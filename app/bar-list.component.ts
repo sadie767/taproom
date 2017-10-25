@@ -14,7 +14,7 @@ import { Bar } from './bar.model';
         <input *ngIf="currentBar.done === true" type="checkbox" checked (click)="toggleDone(currentBar, false)"/>
         <input *ngIf="currentBar.done === false" type="checkbox" (click)="toggleDone(currentBar, true)"/>
         <button (click)="editButtonHasBeenClicked(currentBar)">Edit</button>
-        <button (click) = "soldPintHasBeenClicked(currentBar)" class="btn btn-blue">Sold a pint</button>
+        <button (click) = "soldPintHasBeenClicked(currentBar)" (click) = "inform(currentBar)" class="btn btn-blue">Sold a pint</button>
       </li>
     </ul>
   `
@@ -42,6 +42,13 @@ export class BarListComponent {
       return "bg-danger";
     }
   }
+
+  inform(currentBar) {
+        if (currentBar.volume <= 10) {
+        alert("Getting low, less than 10 pints left!");
+      }
+    }
+
 
   onChange(optionFromMenu) {
   this.filterByCompleteness = optionFromMenu;
