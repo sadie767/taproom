@@ -9,6 +9,7 @@ import { Bar } from './bar.model';
       <h1>List of kegs: </h1>
       <h4>(Name, Brand, Price, ABV, Volume)</h4>
       <bar-list [childBarList]="masterBarList" (clickSender)="editBar($event)"></bar-list>
+      <p>*higher alcohol content in <strong>bold</strong></p>
       <hr>
       <edit-bar [childSelectedBar]="selectedBar" (doneButtonClickedSender)="finishedEditing()">></edit-bar>
       <new-bar (newBarSender)="addBar($event)"></new-bar>
