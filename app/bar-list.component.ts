@@ -4,11 +4,11 @@ import { Bar } from './bar.model';
 @Component({
   selector: 'bar-list',
   template: `
-    <select (change)="onChange($event.target.value)">
-  <option value="allBars">All Kegs</option>
-  <option value="completedBars">Out of Stock Kegs</option>
-  <option value="incompleteBars" selected="selected">In stock Kegs</option>
-</select>
+  <select (change)="onChange($event.target.value)">
+    <option value="allBars">All Kegs</option>
+    <option value="completedBars">Out of Stock Kegs</option>
+    <option value="incompleteBars" selected="selected">In stock Kegs</option>
+  </select>
     <ul>
       <li [class]= "priceColor(currentBar)" *ngFor="let currentBar of childBarList | completeness:filterByCompleteness">{{currentBar.name}} {{currentBar.brand}} {{currentBar.price}} {{currentBar.content}} {{currentBar.volume}}
         <input *ngIf="currentBar.done === true" type="checkbox" checked (click)="toggleDone(currentBar, false)"/>

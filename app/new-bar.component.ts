@@ -21,7 +21,7 @@ import { Bar } from './bar.model';
      <label>Enter Beer Content:</label>
      <input #newContent>
    </div>
-    <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newContent.value, newVolume.value)">Add</button>
+    <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newContent.value)">Add</button>
   `
 })
 
