@@ -5,12 +5,12 @@ import { Bar } from './bar.model';
   selector: 'bar-list',
   template: `
   <select (change)="onChange($event.target.value)">
-    <option value="allBars">All Kegs</option>
-    <option value="completedBars">Out of Stock Kegs</option>
-    <option value="incompleteBars" selected="selected">In stock Kegs</option>
+    <option value="allKegs">All Kegs</option>
+    <option value="outOfStockKegs">Out of Stock Kegs</option>
+    <option value="inStockKegs" selected="selected">In stock Kegs</option>
   </select>
     <ul>
-      <li [class]= "priceColor(currentBar)" *ngFor="let currentBar of childBarList | completeness:filterByCompleteness">{{currentBar.name}} {{currentBar.brand}} {{currentBar.price}} {{currentBar.content}} {{currentBar.volume}}
+      <li [class]= "priceColor(currentBar)" *ngFor="let currentBar of childBarList | completeness:filterByCompleteness">{{currentBar.name}} {{currentBar.brand}} {{currentBar.price}} <span [class]="contentBold(currentBar)">{{currentBar.content}}</span> {{currentBar.volume}}
         <input *ngIf="currentBar.done === true" type="checkbox" checked (click)="toggleDone(currentBar, false)"/>
         <input *ngIf="currentBar.done === false" type="checkbox" (click)="toggleDone(currentBar, true)"/>
         <button (click)="editButtonHasBeenClicked(currentBar)">Edit</button>
@@ -23,7 +23,7 @@ import { Bar } from './bar.model';
 export class BarListComponent {
   @Input() childBarList: Bar[];
   @Output() clickSender = new EventEmitter();
-  filterByCompleteness: string = "incompleteBars";
+  filterByCompleteness: string = "inStockKegs";
 
   editButtonHasBeenClicked(barToEdit: Bar) {
     this.clickSender.emit(barToEdit);
@@ -48,6 +48,12 @@ export class BarListComponent {
         alert("Getting low, less than 10 pints left!");
       }
     }
+
+  contentBold(currentBar) {
+    if (currentBar.content > 6) {
+      return "bold";
+    }
+  }
 
 
   onChange(optionFromMenu) {

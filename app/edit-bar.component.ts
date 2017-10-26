@@ -7,7 +7,7 @@ import { Bar } from './bar.model';
   <div>
       <div *ngIf="childSelectedBar">
         <h3>{{childSelectedBar.name}}</h3>
-        <p>Beer Complete? {{childSelectedBar.done}}</p>
+        <p>Beer In Stock? {{childSelectedBar.done}}</p>
         <hr>
         <h3>Edit Keg Info</h3>
         <label>Edit Beer Name:</label>
